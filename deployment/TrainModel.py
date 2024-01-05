@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
-from sklearn.neural_network import MLPRegressor
+from sklearn.linear_model import LinearRegression
 import bentoml
 import os
 
@@ -155,12 +155,12 @@ X = np.array(uni_df.iloc[0:602,[4, 5, 6, 7, 8, 9, 10,11, 12]].values)
 
 X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3,random_state=0)
 
-mplregressor = MLPRegressor(hidden_layer_sizes=(100,),activation='relu',max_iter=300)
-mplregressor.fit(X_train,y_train)
-nn_y_pred = mplregressor.predict(X_test)
+regressor = LinearRegression()
+regressor.fit(X_train,y_train)
+nn_y_pred = regressor.predict(X_test)
 print(f"R2 score is: {r2_score(y_test,nn_y_pred)}")
 
-saved_model = bentoml.sklearn.save_model("universities_rank_neural_network",mplregressor)
+saved_model = bentoml.sklearn.save_model("universities_rank_regression",regressor)
 print(f"Model saved: {saved_model}")
 
 # Delete file
