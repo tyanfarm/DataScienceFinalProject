@@ -1,0 +1,14 @@
+service: "service.py:svc"  # Same as the argument passed to `bentoml serve`
+labels:
+    owner: bentoml-team
+    stage: dev
+include:
+- "*.py"
+python:
+    packages:  # Additional pip packages required by the service
+    - scikit-learn
+    - pandas
+    - numpy
+    - requests
+models: # The model to be used for building the Bento.
+- universities_rank_neural_network
