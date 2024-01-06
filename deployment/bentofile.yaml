@@ -11,4 +11,4 @@ python:
     - numpy
     - requests
 models: # The model to be used for building the Bento.
-- universities_rank_neural_network
+- universities_rank_regression
